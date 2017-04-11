@@ -1,5 +1,8 @@
 # forester
 FORESTER version 1.0 that helps represent the binary matrix as array of rooted trees. 
+## Requirements
+ruby (developed with ruby 2.3)
+
 ## trees.rb
 ### Usage
 ```
