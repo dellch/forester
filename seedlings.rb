@@ -32,6 +32,7 @@ unless filename.nil?
     ones, zeros = [], []
     
     lines.each do |line|
+      next if line == outgroup_index
       spot = line[index]
       next if spot =='?' || spot == ' '
       case line[index]
