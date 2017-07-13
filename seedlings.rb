@@ -20,7 +20,7 @@ unless filename.nil?
   last_char_index = begin_char_index + num_chars
   taxon_regex = /[A-Za-z_\(\)0-9]+/
   outgroup_index = lines.find_index{ |line| line[begin_char_index..last_char_index].match(/^0*$/) rescue false }
-  outgroup = lines[outroup_index].match(taxon_regex)[0]
+  outgroup = lines[outgroup_index].match(taxon_regex)[0]
   five_percent_of_characters = (1.0*num_chars/20/100).floor*100
 
   puts 'running...'
