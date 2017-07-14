@@ -31,8 +31,8 @@ unless filename.nil?
   (begin_char_index..last_char_index).each do |index|
     ones, zeros = [], []
     
-    lines.each do |line|
-      next if line == outgroup_index
+    lines.each_with_index do |line, line_num|
+      next if line_num == outgroup_index
       spot = line[index]
       next if spot =='?' || spot == ' '
       case line[index]
@@ -47,16 +47,14 @@ unless filename.nil?
     unless ones.empty? and zeros.empty?
       puts "MORE THAN ONE 0s for #{outgroup}" if zeros.length > 1
       puts "MORE THAN TWO 1s for #{outgroup}" if ones.length > 2
-      File.open(new_filename, 'a'){ |f| f.puts("#{outgroup},(#{zeros[0]},(#{ones[0]},#{ones[1]})));\r\n") }
+      File.open(new_filename, 'a'){ |f| f.puts("(#{outgroup},(#{zeros[0]},(#{ones[0]},#{ones[1]})));\r\n") }
     end
 
-    if index%five_percent_of_characters == 0
-      percent_complete = (100.0*index/num_chars).floor
-      puts "characters processed: #{index.to_s} of #{num_chars.to_s}"
-      puts percent_complete.to_s + '% complete'
-    end
+    percent_complete = (100.0*index/num_chars).floor
+    print("#{percent_complete}% complete: #{index.to_s} of #{num_chars.to_s} characters processed#{' '*25}\r")
+
   end
-  puts "Processing complete\r\nNEW FILE CREATED:  #{new_filename}"
+  puts "\nProcessing complete\r\nNEW FILE CREATED:  #{new_filename}"
 else
-  puts "ALERT: You must declare a filename:  usage should be \"ruby evgeny.rb NAME_OF_FILE\""
+  puts "ALERT: You must declare a filename:  usage should be \"ruby seedlings.rb NAME_OF_FILE\""
 end

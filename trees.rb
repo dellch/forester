@@ -24,7 +24,7 @@ unless filename.nil?
   begin_char_index = array[0].index(/(?<=\s)[0-9?]/)
   last_char_index = begin_char_index + num_chars
   taxon_regex = /[A-Za-z_\(\)0-9]+/
-  out = array.pop.match(taxon_match)[0]
+  out = array.pop.match(taxon_regex)[0]
   puts 'running...'
   puts "#{num_chars.to_s} characters to process"
   #from first character, to last character
@@ -105,12 +105,14 @@ unless filename.nil?
         end
       end
     end
-    puts puts "lines processed: #{index.to_s} out of #{num_chars.to_s}"  if index%1000 == 0
-  end
 
+    percent_complete = (100.0*index/num_chars).floor
+    print "#{percent_complete}% complete - lines processed: #{index.to_s} out of #{num_chars.to_s}\r"
+  end
+  puts "\nProcessing complete."
   puts "NEW FILE CREATED:  #{file_no_poly}"
   puts "NEW FILE CREATED:  #{file_with_poly}"
   puts "NEW FILE CREATED:  #{file_additional}"
 else
-  puts "ALERT: You must declare a filename:  usage should be \"ruby evgeny_script_2.rb NAME_OF_FILE\""
+  puts "ALERT: You must declare a filename:  usage should be \"ruby trees.rb NAME_OF_FILE\""
 end
