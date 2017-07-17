@@ -23,7 +23,8 @@ unless filename.nil?
   num_chars = array.delete_at(0).split(' ')[1].to_i
   begin_char_index = array[0].index(/(?<=\s)[0-9?]/)
   last_char_index = begin_char_index + num_chars
-  out = array.pop.match(/[A-Za-z_\(\)0-9]+/)[0]
+  taxon_regex = /[A-Za-z_\(\)0-9]+/
+  out = array.pop.match(taxon_regex)[0]
   puts 'running...'
   puts "#{num_chars.to_s} characters to process"
   #from first character, to last character
@@ -37,9 +38,9 @@ unless filename.nil?
       next if spot == '?' || spot == ' '  #ignore ? spots
       case line[index]
         when '1'
-          ones.push(line.match(/[A-Za-z_\(\)0-9]+/)[0])
+          ones.push(line.match(taxon_regex)[0])
         when '0'
-          zeros.push(line.match(/[A-Za-z_\(\)0-9]+/)[0])
+          zeros.push(line.match(taxon_regex)[0])
       end
     end
 
@@ -104,12 +105,14 @@ unless filename.nil?
         end
       end
     end
-    puts puts "lines processed: #{index.to_s} out of #{num_chars.to_s}"  if index%1000 == 0
-  end
 
+    percent_complete = (100.0*index/num_chars).floor
+    print "#{percent_complete}% complete - lines processed: #{index.to_s} out of #{num_chars.to_s}\r"
+  end
+  puts "\nProcessing complete."
   puts "NEW FILE CREATED:  #{file_no_poly}"
   puts "NEW FILE CREATED:  #{file_with_poly}"
   puts "NEW FILE CREATED:  #{file_additional}"
 else
-  puts "ALERT: You must declare a filename:  usage should be \"ruby evgeny_script_2.rb NAME_OF_FILE\""
+  puts "ALERT: You must declare a filename:  usage should be \"ruby trees.rb NAME_OF_FILE\""
 end

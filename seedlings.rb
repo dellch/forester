@@ -12,35 +12,49 @@ filename = original_file
 unless filename.nil?
   file = File.open(filename)
   str = file.read
-  array = str.split(/\n/)
-  out, out_chars, new_file_contents = "","",""
+  lines = str.split(/\n/)
+  new_filename = "altered_#{filename}.txt"
   #get rid of count line which is first line
-  counts = array.delete_at(0)
-  #array is now OTU     ####### format
-  otu_chars_hash = {}
+  num_chars = lines.delete_at(0).split(' ')[1].to_i
+  begin_char_index = lines[0].index(/(?<=\s)[0-9?]/)
+  last_char_index = begin_char_index + num_chars
+  taxon_regex = /[A-Za-z_\(\)0-9]+/
+  outgroup_index = lines.find_index{ |line| line[begin_char_index..last_char_index].match(/^0*$/) rescue false }
+  outgroup = lines[outgroup_index].match(taxon_regex)[0]
+  five_percent_of_characters = (1.0*num_chars/20/100).floor*100
 
-  array.each do |line|
-    otu = line.match(/[A-Za-z_\(\)0-9]+/)[0]
-    chars = line.match(/(?<=\s)[0-9?]+/)[0].split('')
-    out, out_chars = otu, chars if chars.all?{|chr|chr=="0"}
-    otu_chars_hash[otu] = chars unless chars.all?{|chr|chr=="0"}
-  end
-
-  out_chars.each_with_index do |character, index|
-    puts "SOMETHING IS WRONG WITH THE SCRIPT" if character != "0"
-    ones = []
-    zero = []
-    otu_chars_hash.each_key do |key|
-      ones.push(key) if otu_chars_hash[key][index] == "1"
-      zero.push(key) if otu_chars_hash[key][index] == "0"
+  puts 'running...'
+  puts 'Getting outgroup taxon...'
+  puts "#{outgroup} is the outgroup taxon"
+  puts "processing file with #{num_chars.to_s} characters (#{lines.length.to_s} taxa)..."
+  
+  (begin_char_index..last_char_index).each do |index|
+    ones, zeros = [], []
+    
+    lines.each_with_index do |line, line_num|
+      next if line_num == outgroup_index
+      spot = line[index]
+      next if spot =='?' || spot == ' '
+      case line[index]
+        when '1'
+          ones.push(line.match(taxon_regex)[0])
+        when '0'
+          zeros.push(line.match(taxon_regex)[0])
+      end
     end
-    puts "MORE THAN ONE 0" if zero.length > 1
-    new_file_contents += "(#{out},(#{zero.first},(#{ones[0]},#{ones[1]})));\r\n"
-  end
 
-  new_filename = "altered_"+filename+".txt"
-  File.open(new_filename, "w"){|f|f.write(new_file_contents)}
-  puts "NEW FILE CREATED:  #{new_filename}"
+
+    unless ones.empty? and zeros.empty?
+      puts "MORE THAN ONE 0s for #{outgroup}" if zeros.length > 1
+      puts "MORE THAN TWO 1s for #{outgroup}" if ones.length > 2
+      File.open(new_filename, 'a'){ |f| f.puts("(#{outgroup},(#{zeros[0]},(#{ones[0]},#{ones[1]})));\r\n") }
+    end
+
+    percent_complete = (100.0*index/num_chars).floor
+    print("#{percent_complete}% complete: #{index.to_s} of #{num_chars.to_s} characters processed#{' '*25}\r")
+
+  end
+  puts "\nProcessing complete\r\nNEW FILE CREATED:  #{new_filename}"
 else
-  puts "ALERT: You must declare a filename:  usage should be \"ruby evgeny.rb NAME_OF_FILE\""
+  puts "ALERT: You must declare a filename:  usage should be \"ruby seedlings.rb NAME_OF_FILE\""
 end
