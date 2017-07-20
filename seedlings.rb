@@ -1,7 +1,7 @@
 ##########################################
 ##                                      ##
 ##               USAGE                  ##
-##  type: "ruby evgeny.rb NAME_OF_FILE" ##
+##  type: "ruby seedlings.rb NAME_OF_FILE" ##
 ##  from command line in the directory  ##
 ##  of the file you're using            ##
 ##                                      ##
