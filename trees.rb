@@ -1,7 +1,10 @@
 ################################################
 ##                                            ##
+##. Represents conventional binary matrix as  ##
+##  an array of the Newick trees.             ##
+##.                                           ##
 ##               USAGE                        ##
-##  type: "ruby trees.rb NAME_OF_FILE" ##
+##  type: "ruby trees.rb NAME_OF_FILE"        ##
 ##  from command line in the directory        ##
 ##  of the file you're using                  ##
 ##                                            ##
