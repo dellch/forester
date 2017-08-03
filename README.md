@@ -13,8 +13,8 @@ Seedlings.rb represents a 3TS matrix as an array of the Newick trees
 ### Requirements
 [ruby](https://www.ruby-lang.org/en/) (developed with ruby 2.3)
 ## Scripts
-### trees.rb
-[ [github](https://github.com/dellch/forester/blob/master/trees.rb) | [download](https://raw.githubusercontent.com/dellch/forester/master/trees.rb) ]
+### trees.rb ([github](https://github.com/dellch/forester/blob/master/trees.rb) | [download](https://raw.githubusercontent.com/dellch/forester/master/trees.rb))
+
 #### Usage
 ```
 ruby trees.rb NAME_OF_FILE
@@ -25,8 +25,8 @@ trees.rb outputs three files:
  * WITH_POLY_original-filename.txt
  * ADDITIONAL_FILE_original-filename.txt
 
-### seedlings.rb
-[ [github](https://github.com/dellch/forester/blob/master/seedlings.rb) | [download](https://raw.githubusercontent.com/dellch/forester/master/seedlings.rb) ]
+### seedlings.rb ([github](https://github.com/dellch/forester/blob/master/seedlings.rb) | [download](https://raw.githubusercontent.com/dellch/forester/master/seedlings.rb))
+
 #### Usage
 ```
 ruby seedlings.rb NAME_OF_FILE
