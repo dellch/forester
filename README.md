@@ -11,7 +11,7 @@ Trees.rb represents a conventional binary matrix as an array of the Newick trees
 Seedlings.rb represents a 3TS matrix as an array of the Newick trees
 
 ### Requirements
-ruby (developed with ruby 2.3)
+[ruby](https://www.ruby-lang.org/en/) (developed with ruby 2.3)
 ## Scripts
 ### trees.rb
 #### Usage
