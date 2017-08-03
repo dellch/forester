@@ -39,7 +39,7 @@ unless filename.nil?
     array.each do |line|
       spot = line[index]
       next if spot == '?' || spot == ' '  #ignore ? spots
-      case line[index]
+      case spot
         when '1'
           ones.push(line.match(taxon_regex)[0])
         when '0'
