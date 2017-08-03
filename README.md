@@ -17,7 +17,7 @@ Seedlings.rb represents a 3TS matrix as an array of the Newick trees
 
 #### Usage
 ```
-ruby trees.rb NAME_OF_FILE
+ruby trees.rb PATH_TO_MATRIX_FILE
 ```
 #### Outputs
 trees.rb outputs three files: 
@@ -29,7 +29,7 @@ trees.rb outputs three files:
 
 #### Usage
 ```
-ruby seedlings.rb NAME_OF_FILE
+ruby seedlings.rb PATH_TO_MATRIX_FILE
 ```
 #### Outputs
 seedlings.rb outputs one file: 
