@@ -1,7 +1,8 @@
 # FORESTER
+_Paper available at PeerJ: [A laid-back trip through the Hennigian Forests](https://peerj.com/articles/3578/)_  
 _Concept by Evgeny Mavrodiev_  
 _Scripts by [github.com/dellch](https://github.com/dellch)_  
-_Paper available at PeerJ: [A laid-back trip through the Hennigian Forests](https://peerj.com/articles/3578/)_
+
 
 ### Description
 FORESTER version 1.0
@@ -13,7 +14,7 @@ Seedlings.rb represents a 3TS matrix as an array of the Newick trees
 ### Requirements
 [ruby](https://www.ruby-lang.org/en/) (developed with ruby 2.3)
 ## Scripts
-### trees.rb ([github](https://github.com/dellch/forester/blob/master/trees.rb) | [download](https://raw.githubusercontent.com/dellch/forester/master/trees.rb))
+### trees.rb ([github](https://github.com/dellch/forester/blob/master/trees.rb) | [download](https://raw.githubusercontent.com/dellch/forester/master/trees.rb) | [old version](https://raw.githubusercontent.com/dellch/forester/db080518315734bf1e22c19c179e63dca9a7a7ad/trees.rb))
 
 #### Usage
 ```
