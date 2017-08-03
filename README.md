@@ -23,6 +23,7 @@ trees.rb outputs three files:
  * NO_POLY_original-filename.txt
  * WITH_POLY_original-filename.txt
  * ADDITIONAL_FILE_original-filename.txt
+
 ### seedlings.rb
 #### Usage
 ```
