@@ -58,9 +58,9 @@ unless filename.nil?
     # D      100110
     # Out    000000
     #
-    # I. How trees suppose to looks like:
+    # I. Expected tree outputs:
     #
-    #                                   a. No POLY:
+    # a. No POLY (exclude polytomies in output):
     #
     #     (Out,(A,B,(C,D))); - first character,
     #     (Out,(D,(A,B,C))); - second character,
@@ -69,7 +69,7 @@ unless filename.nil?
     #
     #     Characters three and four are polytomies = must be skipped!
     #
-    # b. With POLY:
+    # b. With POLY (include polytomies in output):
     #
     #     (Out,(A,B,(C,D))); - first character,
     #     (Out,(D,(A,B,C))); - second character,
@@ -78,7 +78,8 @@ unless filename.nil?
     #     (Out,(A,B,C,D)); - fifth character,
     #     (Out,(C,D,(A,B))); - character six,​
     #
-    # So, all characters are represented in Newick form - neither is skipped = polytomies are included.
+    #     So, all characters are represented in Newick form - neither are
+    #     skipped = polytomies are included.
     #
     #     c. ADDITIONAL:
     #
